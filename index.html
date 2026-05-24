@@ -234,6 +234,36 @@
                 <p>边界即将消失。AI 挣脱了屏幕与机房的枷锁，披上实体机器人的钢铁躯壳，走入物理世界。这不是工具的升级，而是新物种与我们并肩同行的破晓时刻。</p>
             </div>
         </div>
+        <section class="w-full max-w-2xl px-4 mx-auto mt-12 mb-16 box-sizing">
+            <div style="background: var(--card-bg); border: 1px solid var(--border-color);"
+                class="p-6 rounded-2xl shadow-xl">
+                <div class="card-number mb-3">// CHAPTER // 04 // CARBON ECHO</div>
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    人类意识残留区 (Carbon Message Board)
+                </h2>
+
+                <div class="flex flex-col gap-3">
+                    <input id="user-nickname" type="text"
+                        class="w-full bg-black border border-zinc-800 rounded-lg p-2 text-sm text-white font-mono focus:border-emerald-500 focus:outline-none placeholder-zinc-700"
+                        placeholder="代号 (Nickname) / 留空则为无名碳基">
+                    <textarea id="user-content"
+                        class="w-full h-24 bg-black border border-zinc-800 rounded-lg p-3 text-sm text-white font-mono focus:border-emerald-500 focus:outline-none placeholder-zinc-700"
+                        placeholder="请在这里留下一段你存在于这个时代的碳基证明..."></textarea>
+                    <button onclick="submitMessage()"
+                        class="w-full py-2.5 border border-emerald-500/30 text-emerald-400 font-mono text-sm rounded-lg hover:bg-emerald-500/10 active:scale-[0.99] transition-all">
+                        [ SUBMIT TO THE ARCHIVE ]
+                    </button>
+                </div>
+
+                <div class="mt-8 border-t border-zinc-900 pt-6">
+                    <div class="text-xs font-mono text-zinc-600 mb-3 tracking-widest">// HISTORICAL LOGS:</div>
+                    <div id="message-flow" class="flex flex-col gap-3 max-h-60 overflow-y-auto pr-2 font-mono text-xs">
+                        <div class="text-zinc-600 animate-pulse">正在链接云端数据库，读取历史意识波动...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -274,9 +304,93 @@
             }
         }
 
+        // 3. 后续可以在这里接入更炫酷的弹窗，或者 fetch 后台的 AI 随机金句
         function showFragment(title, content) {
-            // 后续可以在这里接入更炫酷的弹窗，或者 fetch 后台的 AI 随机金句
+
             alert("【" + title + " 档案加载中...】\n\n" + content);
+        }
+        // 4. 引入 Supabase 极简客户端（直接挂载到 window）
+        const SUPABASE_URL = "https://flouxqvmphxtxvnpdsai.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsb3V4cXZtcGh4dHh2bnBkc2FpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NDQ2ODksImV4cCI6MjA5NTIyMDY4OX0.WWuC4IO6xmOHfLIcGyGS1SZjt4ZocfgJSBsZVrYLQuA";
+
+        // 动态载入 Supabase SDK
+        const script = document.createElement('script');
+        script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+        document.head.appendChild(script);
+
+        let supabaseClient;
+        script.onload = () => {
+            // 初始化云端连接管道
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            // 初始化时自动读取一次历史数据
+            fetchMessages();
+        };
+
+        // 从云端数据库读取留言
+        async function fetchMessages() {
+            const flowContainer = document.getElementById("message-flow");
+            if (!supabaseClient || !flowContainer) return;
+
+            const { data, error } = await supabaseClient
+                .from('messages')
+                .select('*')
+                .order('id', { ascending: false });
+
+            if (error) {
+                flowContainer.innerHTML = `<div class="text-red-500">// 意识读取失败: ${error.message}</div>`;
+                return;
+            }
+
+            if (data.length === 0) {
+                flowContainer.innerHTML = `<div class="text-zinc-600">// 当前时间线暂无碳基留痕，等待你的第一条信号。</div>`;
+                return;
+            }
+
+            // 渲染历史数据流
+            flowContainer.innerHTML = data.map(msg => {
+                const time = new Date(msg.created_at).toLocaleString();
+                return `
+            <div class="p-3 bg-zinc-950/60 border border-zinc-900 rounded-lg">
+                <div class="flex justify-between text-zinc-500 mb-1 text-[10px]">
+                    <span class="text-emerald-500/70">⚡ @${msg.nickname}</span>
+                    <span>${time}</span>
+                </div>
+                <p class="text-zinc-300 break-all leading-relaxed">${msg.content}</p>
+            </div>
+        `;
+            }).join('');
+        }
+
+        // 提交留言到云端
+        async function submitMessage() {
+            const nicknameInput = document.getElementById("user-nickname");
+            const contentInput = document.getElementById("user-content");
+
+            const nickname = nicknameInput.value.trim() || "无名碳基";
+            const content = contentInput.value.trim();
+
+            if (!content) {
+                alert("系统提示：不可提交虚无的意识，请写点什么。");
+                return;
+            }
+
+            if (!supabaseClient) {
+                alert("数据库连接中，请稍后...");
+                return;
+            }
+
+            // 塞入云端数据库
+            const { error } = await supabaseClient
+                .from('messages')
+                .insert([{ nickname, content }]);
+
+            if (error) {
+                alert("投递失败：" + error.message);
+            } else {
+                // 清空输入框并重新刷新列表
+                contentInput.value = "";
+                fetchMessages();
+            }
         }
     </script>
 </body>
