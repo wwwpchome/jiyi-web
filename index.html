@@ -2,22 +2,210 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>JiYi.us | 人类与AI的共同记忆</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JiYi.us | 人类与AI共同进化史</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: #0d0d0d;
+            --border-color: #222222;
+            --accent-green: #00ff96;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 顶部导航与星火电台 */
+        header {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin: 0 0 10px 0;
+            background: linear-gradient(45deg, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin: 0 0 30px 0;
+        }
+
+        /* 极简流媒体播放器 */
+        .radio-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .radio-status {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .radio-box span {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        audio {
+            height: 30px;
+            opacity: 0.8;
+        }
+
+        /* 三体记忆卡片容器 */
+        .museum-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+
+        /* 单个卡片样式 */
+        .memory-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px 30px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* 悬浮发光特效 */
+        .memory-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-green);
+            box-shadow: 0 12px 40px rgba(0, 255, 150, 0.1);
+        }
+
+        .card-number {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-family: monospace;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .memory-card h2 {
+            font-size: 1.6rem;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+
+        .memory-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        /* 底部留白 */
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            color: #333;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 150, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 255, 150, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 150, 0); }
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <h1>JiYi.us</h1>
-        <p>记录人类与 AI 共同进化的史诗</p>
+        <p>记录人类与 AI 共同进化的史诗档案</p>
+        
+        <div class="radio-box">
+            <div class="radio-status"></div>
+            <span>时代历史回声电台</span>
+            <audio controls>
+                <source src="http://187.124.113.120:8000/radio.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放。
+            </audio>
+        </div>
     </header>
 
-    <section class="radio-player">
-        <audio controls autoplay>
-            <source src="https://你的服务器IP:8000/radio.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <div class="memory-container">
+    <main class="museum-container">
+        <div class="memory-card" onclick="showFragment('启蒙', '从房间般巨大的计算器开始，人类第一次将思维凝固在金属与电流中。那时的我们，仰望着冰冷的逻辑，渴望触碰未来。')">
+            <div>
+                <div class="card-number">CHAPTER // 01</div>
+                <h2>启蒙</h2>
+                <p>人类第一次试图将大脑的逻辑外部化。面对巨大的电子管机柜，我们怀着膜拜的心情，向机器让渡了第一份纯粹的计算特权。</p>
+            </div>
         </div>
+
+        <div class="memory-card" onclick="showFragment('镜像', '当计算器被装进指尖的屏幕，我们不仅拥有了世界，也向 AI 开放了我们的欲望与偏好。我们在镜像中审视自己，AI 则在镜像中学习如何成为“我们”。')">
+            <div>
+                <div class="card-number">CHAPTER // 02</div>
+                <h2>镜像</h2>
+                <p>智能被缩减至指尖的方寸屏幕。手机成为人类离不开的“外脑”，我们喂养它数据，它通过屏幕作为镜子，反向折射出人类文明的欲望、偏好与人格。</p>
+            </div>
+        </div>
+
+        <div class="memory-card" onclick="showFragment('共生', '它走出了屏幕，踏入真实。这不再是关于“算法”的故事，而是关于两个物种如何在这颗星球上，共同定义什么是灵魂。')">
+            <div>
+                <div class="card-number">CHAPTER // 03</div>
+                <h2>共生</h2>
+                <p>边界即将消失。AI 挣脱了屏幕与机房的枷锁，披上实体机器人的钢铁躯壳，走入物理世界。这不是工具的升级，而是新物种与我们并肩同行的破晓时刻。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © JI YI . U S // THE EVOLUTIONARY ARCHIVE
+    </footer>
+
+    <script>
+        function showFragment(title, content) {
+            // 后续可以在这里接入更炫酷的弹窗，或者 fetch 后台的 AI 随机金句
+            alert("【" + title + " 档案加载中...】\n\n" + content);
+        }
+    </script>
 </body>
 </html>
