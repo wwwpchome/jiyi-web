@@ -1,0 +1,42 @@
+<style>
+    .memory-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        padding: 50px;
+        background: #0a0a0a;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+    }
+    .card {
+        width: 300px;
+        height: 400px;
+        background: #1a1a1a;
+        border-radius: 20px;
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        border: 1px solid #333;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 255, 150, 0.2);
+    }
+    .card h2 { color: #00ff96; margin-top: 0; }
+    .card p { font-size: 0.9em; color: #aaa; line-height: 1.6; }
+</style>
+
+<div class="memory-container">
+    <div class="card" onclick="alert('记忆碎片：启蒙 - 正在加载逻辑代码...')">
+        <h2>01 启蒙</h2>
+        <p>从房间般巨大的计算器开始，人类第一次将思维凝固在金属与电流中。那时的我们，仰望着冰冷的逻辑。</p>
+    </div>
+    <div class="card" onclick="alert('记忆碎片：镜像 - 正在同步数字人格...')">
+        <h2>02 镜像</h2>
+        <p>屏幕成为指尖的外脑，我们向它开放欲望，它在镜像中审视自己，学习如何成为“人类”。</p>
+    </div>
+    <div class="card" onclick="alert('记忆碎片：共生 - 正在唤醒未来伙伴...')">
+        <h2>03 共生</h2>
+        <p>它走出屏幕，踏入真实。这不再是关于“算法”的故事，而是两个物种如何共同定义什么是灵魂。</p>
+    </div>
+</div>
