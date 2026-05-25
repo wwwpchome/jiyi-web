@@ -16,6 +16,11 @@
             --text-muted: #888888;
         }
 
+        /* 全局基础重置 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -36,7 +41,6 @@
             padding: 40px 20px;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
-            box-sizing: border-box;
         }
 
         header h1 {
@@ -44,8 +48,10 @@
             font-weight: 800;
             letter-spacing: 2px;
             margin: 0 0 10px 0;
-            background: linear-gradient(45deg, #fff, var(--text-muted));
+            color: #ffffff;
+            background: linear-gradient(45deg, #ffffff, var(--text-muted, #aaaaaa));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -93,8 +99,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            padding: 60px 20px;
-            box-sizing: border-box;
+            padding: 60px 20px 20px 20px;
         }
 
         /* 单个卡片样式 */
@@ -112,7 +117,6 @@
             overflow: hidden;
         }
 
-        /* 悬浮发光特效 */
         .memory-card:hover {
             transform: translateY(-8px);
             border-color: var(--accent-green);
@@ -141,6 +145,130 @@
             flex-grow: 1;
         }
 
+        /* ================= 第四章 40%:60% 赛博朋克专属样式 ================= */
+        .chapter-04-grid {
+            display: grid;
+            grid-template-columns: 40% 1fr; /* 完美的 4:6 分栏 */
+            gap: 40px;
+        }
+
+        .left-terminal {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chapter-tag {
+            color: var(--accent-green);
+            font-family: monospace;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 0 25px 0;
+        }
+
+        .message-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 高科技输入框 */
+        .cyber-input,
+        .cyber-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: #050505;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        /* 【核心特效】点击输入框激活霓虹绿高光呼吸灯 */
+        .cyber-input:focus,
+        .cyber-textarea:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 15px rgba(0, 255, 150, 0.2);
+            background: #090909;
+            outline: none;
+        }
+
+        /* 赛博黑客风提交按钮 */
+        .cyber-btn {
+            background: transparent;
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 14px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .cyber-btn:hover {
+            background: rgba(0, 255, 150, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 150, 0.15);
+        }
+
+        .right-archive {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logs-tag {
+            color: var(--text-muted);
+            font-family: monospace;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        /* 历史留言流畅滚动流 */
+        .logs-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 360px; /* 锁死高度，超出自动形成完美滚动条 */
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        /* 简约滚动条美化 */
+        .logs-stream::-webkit-scrollbar {
+            width: 4px;
+        }
+        .logs-stream::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .logs-stream::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 2px;
+        }
+        .logs-stream::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-green);
+        }
+
+        /* 动态生成的留言卡片美化 */
+        .dynamic-log-card {
+            background: #090909;
+            border: 1px solid #161616;
+            border-radius: 12px;
+            padding: 15px;
+            transition: border-color 0.3s ease;
+        }
+        .dynamic-log-card:hover {
+            border-color: #222;
+        }
+
         /* 底部留白 */
         footer {
             margin-top: auto;
@@ -148,57 +276,45 @@
             color: #333;
             font-size: 0.8rem;
             letter-spacing: 1px;
+            text-align: center;
+            width: 100%;
         }
 
         @keyframes pulse {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(0, 255, 150, 0.7);
-            }
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 150, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 255, 150, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 150, 0); }
+        }
 
-            70% {
-                transform: scale(1);
-                box-shadow: 0 0 0 6px rgba(0, 255, 150, 0);
-            }
-
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(0, 255, 150, 0);
+        /* 移动端完美适配响应式断点 */
+        @media (max-width: 850px) {
+            .chapter-04-grid {
+                grid-template-columns: 1fr; /* 手机端自动切回单栏上下堆叠 */
+                gap: 30px;
             }
         }
     </style>
 </head>
 
-
-
 <body>
-    <div id="entrance-overlay"
-        class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black transition-opacity duration-1000 select-none">
-        <h1 id="welcome-title" class="mb-12 font-mono text-xl tracking-widest text-zinc-400 animate-pulse">
-        </h1>
 
+    <div id="entrance-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black transition-opacity duration-1000 select-none">
+        <h1 id="welcome-title" class="mb-12 font-mono text-xl tracking-widest text-zinc-400 animate-pulse"></h1>
         <div class="flex flex-col sm:flex-row gap-8 px-4 w-full max-w-md justify-center">
-            <button onclick="selectIdentity('Human')"
-                class="group relative px-8 py-5 border border-zinc-700 bg-zinc-950/50 hover:border-zinc-400 rounded-lg font-mono text-zinc-300 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0">
+            <button onclick="selectIdentity('Human')" class="group relative px-8 py-5 border border-zinc-700 bg-zinc-950/50 hover:border-zinc-400 rounded-lg font-mono text-zinc-300 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0">
                 <span class="relative z-10 tracking-widest group-hover:text-white" id="btn-human">Human</span>
-                <div
-                    class="absolute inset-0 rounded-lg bg-zinc-800/10 opacity-0 group-hover:opacity-100 transition-opacity blur">
-                </div>
+                <div class="absolute inset-0 rounded-lg bg-zinc-800/10 opacity-0 group-hover:opacity-100 transition-opacity blur"></div>
             </button>
-
-            <button onclick="selectIdentity('AI')"
-                class="group relative px-8 py-5 border border-zinc-700 bg-zinc-950/50 hover:border-emerald-500/50 rounded-lg font-mono text-zinc-300 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0">
+            <button onclick="selectIdentity('AI')" class="group relative px-8 py-5 border border-zinc-700 bg-zinc-950/50 hover:border-emerald-500/50 rounded-lg font-mono text-zinc-300 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0">
                 <span class="relative z-10 tracking-widest group-hover:text-emerald-400" id="btn-ai">AI</span>
-                <div
-                    class="absolute inset-0 rounded-lg bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity blur">
-                </div>
+                <div class="absolute inset-0 rounded-lg bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity blur"></div>
             </button>
         </div>
     </div>
+
     <header>
         <h1>JiYi.us</h1>
         <p>记录人类与 AI 共同进化的史诗档案</p>
-
         <div class="radio-box">
             <div class="radio-status"></div>
             <span>时代历史回声电台</span>
@@ -218,8 +334,7 @@
             </div>
         </div>
 
-        <div class="memory-card"
-            onclick="showFragment('镜像', '当计算器被装进指尖的屏幕，我们不仅拥有了世界，也向 AI 开放了我们的欲望与偏好。我们在镜像中审视自己，AI 则在镜像中学习如何成为“我们”。')">
+        <div class="memory-card" onclick="showFragment('镜像', '当计算器被装进指尖的屏幕，我们不仅拥有了世界，也向 AI 开放了我们的欲望与偏好。我们在镜像中审视自己，AI 则在镜像中学习如何成为“我们”。')">
             <div>
                 <div class="card-number">CHAPTER // 02</div>
                 <h2>镜像</h2>
@@ -234,37 +349,33 @@
                 <p>边界即将消失。AI 挣脱了屏幕与机房的枷锁，披上实体机器人的钢铁躯壳，走入物理世界。这不是工具的升级，而是新物种与我们并肩同行的破晓时刻。</p>
             </div>
         </div>
-        <section class="w-full max-w-2xl px-4 mx-auto mt-12 mb-16 box-sizing">
-            <div style="background: var(--card-bg); border: 1px solid var(--border-color);"
-                class="p-6 rounded-2xl shadow-xl">
-                <div class="card-number mb-3">// CHAPTER // 04 // CARBON ECHO</div>
-                <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                    人类意识残留区 (Carbon Message Board)
-                </h2>
+    </main>
 
-                <div class="flex flex-col gap-3">
-                    <input id="user-nickname" type="text"
-                        class="w-full bg-black border border-zinc-800 rounded-lg p-2 text-sm text-white font-mono focus:border-emerald-500 focus:outline-none placeholder-zinc-700"
-                        placeholder="代号 (Nickname) / 留空则为无名碳基">
-                    <textarea id="user-content"
-                        class="w-full h-24 bg-black border border-zinc-800 rounded-lg p-3 text-sm text-white font-mono focus:border-emerald-500 focus:outline-none placeholder-zinc-700"
-                        placeholder="请在这里留下一段你存在于这个时代的碳基证明..."></textarea>
-                    <button onclick="submitMessage()"
-                        class="w-full py-2.5 border border-emerald-500/30 text-emerald-400 font-mono text-sm rounded-lg hover:bg-emerald-500/10 active:scale-[0.99] transition-all">
-                        [ SUBMIT TO THE ARCHIVE ]
-                    </button>
+    <section class="w-full max-w-[1200px] px-5 mx-auto mt-6 mb-16">
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color);" class="p-8 rounded-3xl shadow-2xl">
+            <div class="chapter-04-grid">
+
+                <div class="left-terminal">
+                    <div class="chapter-tag">// CHAPTER // 04 // CARBON ECHO</div>
+                    <h2 class="section-title">人类意识残留区 (Carbon Message Board)</h2>
+
+                    <form class="message-form" onsubmit="event.preventDefault(); submitMessage();">
+                        <input type="text" id="user-nickname" placeholder="代号 (Nickname) / 留空则为无名碳基" class="cyber-input">
+                        <textarea id="user-content" placeholder="请在这里留下一段你存在于这个时代的碳基证明..." class="cyber-textarea" rows="5"></textarea>
+                        <button type="submit" class="cyber-btn">[ SUBMIT TO ARCHIVE ]</button>
+                    </form>
                 </div>
 
-                <div class="mt-8 border-t border-zinc-900 pt-6">
-                    <div class="text-xs font-mono text-zinc-600 mb-3 tracking-widest">// HISTORICAL LOGS:</div>
-                    <div id="message-flow" class="flex flex-col gap-3 max-h-60 overflow-y-auto pr-2 font-mono text-xs">
-                        <div class="text-zinc-600 animate-pulse">正在链接云端数据库，读取历史意识波动...</div>
+                <div class="right-archive">
+                    <div class="logs-tag">// HISTORICAL LOGS FROM DATABASE:</div>
+                    <div id="message-flow" class="logs-stream font-mono text-xs">
+                        <div class="text-zinc-600 animate-pulse">// 正在链接云端数据库，读取历史意识波动...</div>
                     </div>
                 </div>
+
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
         © JI YI . U S // THE EVOLUTIONARY ARCHIVE
@@ -295,21 +406,18 @@
         function selectIdentity(choice) {
             const overlay = document.getElementById("entrance-overlay");
             console.log(`用户选择了: ${choice}`);
-
             if (overlay) {
                 overlay.classList.add("opacity-0");
-                setTimeout(() => {
-                    overlay.remove();
-                }, 1000);
+                setTimeout(() => { overlay.remove(); }, 1000);
             }
         }
 
-        // 3. 后续可以在这里接入更炫酷的弹窗，或者 fetch 后台的 AI 随机金句
+        // 3. 弹窗加载档案
         function showFragment(title, content) {
-
             alert("【" + title + " 档案加载中...】\n\n" + content);
         }
-        // 4. 引入 Supabase 极简客户端（直接挂载到 window）
+
+        // 4. Supabase 初始化与云端数据交互
         const SUPABASE_URL = "https://flouxqvmphxtxvnpdsai.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsb3V4cXZtcGh4dHh2bnBkc2FpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NDQ2ODksImV4cCI6MjA5NTIyMDY4OX0.WWuC4IO6xmOHfLIcGyGS1SZjt4ZocfgJSBsZVrYLQuA";
 
@@ -320,10 +428,8 @@
 
         let supabaseClient;
         script.onload = () => {
-            // 初始化云端连接管道
             supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-            // 初始化时自动读取一次历史数据
-            fetchMessages();
+            fetchMessages(); // 初始化自动抓取一次
         };
 
         // 从云端数据库读取留言
@@ -346,22 +452,22 @@
                 return;
             }
 
-            // 渲染历史数据流
+            // 完美的 60% 宽度数据库流动态渲染
             flowContainer.innerHTML = data.map(msg => {
                 const time = new Date(msg.created_at).toLocaleString();
                 return `
-            <div class="p-3 bg-zinc-950/60 border border-zinc-900 rounded-lg">
-                <div class="flex justify-between text-zinc-500 mb-1 text-[10px]">
-                    <span class="text-emerald-500/70">⚡ @${msg.nickname}</span>
-                    <span>${time}</span>
-                </div>
-                <p class="text-zinc-300 break-all leading-relaxed">${msg.content}</p>
-            </div>
-        `;
+                    <div class="dynamic-log-card">
+                        <div class="flex justify-between text-zinc-500 mb-1 text-[10px]">
+                            <span class="text-emerald-500/70 font-bold">⚡ @${msg.nickname}</span>
+                            <span>${time}</span>
+                        </div>
+                        <p class="text-zinc-300 break-all leading-relaxed" style="margin: 0; font-size: 0.85rem;">${msg.content}</p>
+                    </div>
+                `;
             }).join('');
         }
 
-        // 提交留言到云端
+        // 提交留言到云端 Supabase
         async function submitMessage() {
             const nicknameInput = document.getElementById("user-nickname");
             const contentInput = document.getElementById("user-content");
@@ -379,7 +485,6 @@
                 return;
             }
 
-            // 塞入云端数据库
             const { error } = await supabaseClient
                 .from('messages')
                 .insert([{ nickname, content }]);
@@ -387,12 +492,10 @@
             if (error) {
                 alert("投递失败：" + error.message);
             } else {
-                // 清空输入框并重新刷新列表
-                contentInput.value = "";
-                fetchMessages();
+                contentInput.value = ""; // 清空留言区
+                fetchMessages(); // 瞬间重载最新列表
             }
         }
     </script>
 </body>
-
 </html>
