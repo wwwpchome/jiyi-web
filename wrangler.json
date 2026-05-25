@@ -1,8 +1,14 @@
 {
-  "name": "jiyi-web-platform",
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jiyi-en", // 👈 这里改成更规范的 jiyi-en
   "compatibility_date": "2026-05-25",
-  // 核心：这一行直接告诉 Cloudflare 去读取静态网页目录，完美兼容新版编译流程
+  "observability": {
+    "enabled": true
+  },
   "assets": {
-    "directory": "./" 
-  }
+    "directory": "."
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
 }
