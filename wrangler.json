@@ -1,0 +1,8 @@
+{
+  "name": "jiyi-web-platform",
+  "compatibility_date": "2026-05-25",
+  // 核心：这一行直接告诉 Cloudflare 去读取静态网页目录，完美兼容新版编译流程
+  "assets": {
+    "directory": "./" 
+  }
+}
