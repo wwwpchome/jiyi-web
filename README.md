@@ -17,6 +17,8 @@ Deploy `cn/index.html` as the homepage for the Chinese site.
 
 Use two separate Cloudflare Pages projects, one for each domain.
 
+### Project configuration
+
 1. `jiyi.us` Pages project
    - Build command: leave empty
    - Build output directory: `/`
@@ -27,16 +29,19 @@ Use two separate Cloudflare Pages projects, one for each domain.
    - Build output directory: `cn`
    - Ensure `cn/index.html` is served as the homepage
 
-### Common Cloudflare Pages setup steps
+### Setup checklist
 
-1. In Cloudflare Pages, create the first project and connect it to this repository.
-2. Leave the build command blank.
-3. Set the output directory as described above.
-4. Add `jiyi.us` as the custom domain for the first project.
-5. Create the second Pages project for the same repository.
-6. Add `cn` as the build output directory for the second project.
-7. Add `cn.jiyi.us` as the custom domain for the second project.
-8. Verify each domain inside Cloudflare Pages.
+- [ ] Create the first Cloudflare Pages project and connect it to this repository.
+- [ ] Leave the build command blank.
+- [ ] Set the build output directory to `/` for `jiyi.us`.
+- [ ] Confirm `index.html` is the homepage for `jiyi.us`.
+- [ ] Add `jiyi.us` as the custom domain for the first Pages project.
+- [ ] Create the second Cloudflare Pages project for the same repository.
+- [ ] Leave the build command blank.
+- [ ] Set the build output directory to `cn` for `cn.jiyi.us`.
+- [ ] Confirm `cn/index.html` is the homepage for `cn.jiyi.us`.
+- [ ] Add `cn.jiyi.us` as the custom domain for the second Pages project.
+- [ ] Verify both domains inside Cloudflare Pages.
 
 ## Cloudflare DNS guidance
 
@@ -49,9 +54,10 @@ If Cloudflare DNS manages both domains:
 ## Developer Notes
 
 - Serve HTML with correct charset headers, such as `Content-Type: text/html; charset=UTF-8`.
-- Use UTF-8 for source files, but avoid writing Chinese metadata or non-ASCII headers in places that may be interpreted as ISO-8859-1 by older systems.
-- If you see encoding errors, verify the HTTP headers and the actual file encoding.
+- Keep source files encoded in UTF-8.
+- Avoid writing Chinese or other non-ASCII characters in HTTP header field values.
 - Non-ISO-8859-1 characters in header values can cause `TypeError` or server-side rejection in some proxy/CDN setups.
+- If you see encoding errors, verify both the HTTP headers and the actual file encoding.
 
 ## Summary
 
