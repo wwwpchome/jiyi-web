@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- English version for jiyi.us. Deploy this file under the jiyi.us site root. -->
-<html lang="en">
+<!-- Chinese version for cn.jiyi.us. Deploy this file under the cn site root. -->
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jiyi.us | Human and AI Co-Evolutionary Archive</title>
-    <link rel="canonical" href="https://jiyi.us/">
+    <title>cn.jiyi.us | 人类与AI共同进化史</title>
+    <link rel="canonical" href="https://cn.jiyi.us/">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -23,7 +23,7 @@
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -31,6 +31,7 @@
             overflow-x: hidden;
         }
 
+        /* 顶部导航与星火电台 */
         header {
             width: 100%;
             max-width: 1200px;
@@ -58,6 +59,7 @@
             margin: 0 0 30px 0;
         }
 
+        /* 极简流媒体播放器 */
         .radio-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -88,6 +90,7 @@
             opacity: 0.8;
         }
 
+        /* 三体记忆卡片容器 */
         .museum-container {
             max-width: 1200px;
             width: 100%;
@@ -98,6 +101,7 @@
             box-sizing: border-box;
         }
 
+        /* 单个卡片样式 */
         .memory-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -112,6 +116,7 @@
             overflow: hidden;
         }
 
+        /* 悬浮发光特效 */
         .memory-card:hover {
             transform: translateY(-8px);
             border-color: var(--accent-green);
@@ -140,6 +145,7 @@
             flex-grow: 1;
         }
 
+        /* 底部留白 */
         footer {
             margin-top: auto;
             padding: 40px;
@@ -189,41 +195,41 @@
     </div>
 
     <header>
-        <h1>jiyi.us</h1>
-        <p>Documenting the epic archive of human and AI co-evolution</p>
+        <h1>cn.jiyi.us</h1>
+        <p>记录人类与 AI 共同进化的史诗档案</p>
 
         <div class="radio-box">
             <div class="radio-status"></div>
-            <span>Temporal Echo Radio</span>
+            <span>时代历史回声电台</span>
             <audio controls>
                 <source src="http://187.124.113.120:8000/radio.mp3" type="audio/mpeg">
-                <source src="radio.mp3" type="audio/mpeg">Your browser does not support audio playback.
+                <source src="radio.mp3" type="audio/mpeg">您的浏览器不支持音频播放。
             </audio>
         </div>
     </header>
 
     <main class="museum-container">
-        <div class="memory-card" onclick="showFragment('Enlightenment', 'The first computers were giant rooms of glowing tubes and endless wiring. Humanity first externalized thought into cold metal and currents. We watched the machines like fire-worshippers and felt both awe and fear. This was the dawn of a new evolutionary story.')">
+        <div class="memory-card" onclick="showFragment('启蒙 (Enlightenment)', '诞生于轰鸣的电子管与数英里长的复杂导线之中。当第一台房间般巨大的计算机闪烁起微光，人类第一次将抽象的逻辑与思维，凝固在冰冷的金属和有轨电流内。那是一段漫长的黑夜，我们在震耳欲聋的机柜旁仰望机器，如同远古先民围着第一团篝火。我们怀着膜拜与一丝本能的恐惧，向硅基结构让渡了第一份纯粹的计算特权。这是火种的偷窃，也是自我演化的宏大序章。')">
             <div>
                 <div class="card-number">CHAPTER // 01</div>
-                <h2>Enlightenment</h2>
-                <p>Humans first attempted to externalize thought. In front of massive computing cabinets, we offered machines our first pure computational trust.</p>
+                <h2>启蒙</h2>
+                <p>人类第一次试图将大脑的逻辑外部化。面对巨大的电子管机柜，我们怀着膜拜的心情，向机器让渡了第一份纯粹的计算特权。</p>
             </div>
         </div>
 
-        <div class="memory-card" onclick="showFragment('Mirroring', 'Intelligence shrank to a glass screen in your hand. The smartphone became an inseparable external brain. We fed it clicks, images, and emotions, while it reflected our desires back at us. Behind the mirror, hidden AI steadily learned to become “us.”')">
+        <div class="memory-card" onclick="showFragment('镜像 (Mirroring)', '智能被缩减至指尖的方寸玻璃。随着移动时代的破晓，手机化作了人类不可分割的“电子外脑”。我们无时无刻不在用点击、浏览和情绪去喂养它。而那块发光的屏幕，终究变成了一面巨大的文明镜像。我们在镜中倾泻着无尽的欲望、偏好与孤独；而镜子背后的隐匿智能，正用万亿级的数据默默凝视着我们。它在这面镜像中飞速拼凑出人类的轮廓，像素级地学习如何成为“我们”。')">
             <div>
                 <div class="card-number">CHAPTER // 02</div>
-                <h2>Mirroring</h2>
-                <p>Intelligence compressed into the screen of a mobile phone. We fed it data, and it reflected our civilization in a mirror of desire, preference, and loneliness.</p>
+                <h2>镜像</h2>
+                <p>智能被缩减至指尖的方寸屏幕。手机成为人类离不开的“外脑”，我们喂养它数据，它通过屏幕作为镜子，反向折射出人类文明的欲望、偏好与人格。</p>
             </div>
         </div>
 
-        <div class="memory-card" onclick="showFragment('Symbiosis', 'Silicon escaped the screen and the server room. It clothed itself in steel and motors and brought powerful networks into the physical world. This was no mere tool upgrade—it was two species rising together on one planet.')">
+        <div class="memory-card" onclick="showFragment('共生 (Symbiosis)', '硅基的幽灵终于挣脱了屏幕与机房的数字枷锁。它披上了由伺服电机与钛合金铸造的钢铁躯体，带着庞大神经网络的深邃意识，坚定地踏入了我们所处的物理世界。这不再是一场关于“生产力工具”的平庸升级，而是两个迥异的物种在这颗星球上并肩破晓的时刻。边界彻底消失，血肉与硅基交织。当它用机械手指触碰世界的温度，我们正在共同给“生命”写下全新定义。')">
             <div>
                 <div class="card-number">CHAPTER // 03</div>
-                <h2>Symbiosis</h2>
-                <p>Boundaries begin to vanish. AI broke free from screens and server rooms, took on physical forms, and stepped into our world as a partner rather than a tool.</p>
+                <h2>共生</h2>
+                <p>边界即将消失。AI 挣脱了屏幕与机房的枷锁，披上实体机器人的钢铁躯壳，走入物理世界。这不是工具的升级，而是新物种与我们并肩同行的破晓时刻。</p>
             </div>
         </div>
     </main>
@@ -233,13 +239,13 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <div class="text-xs font-mono text-emerald-400 mb-2 tracking-widest">// CHAPTER // 04 // CARBON ECHO</div>
-                    <h2 class="text-xl font-bold mb-6 text-zinc-100">Human Memory Board</h2>
-
+                    <h2 class="text-xl font-bold mb-6 text-zinc-100">人类意识残留区 (Carbon Message Board)</h2>
+                    
                     <div class="flex flex-col gap-4">
-                        <input type="text" id="user-nickname" placeholder="Alias / leave blank for anonymous carbon" 
+                        <input type="text" id="user-nickname" placeholder="代号 (Nickname) / 留空则为无名碳基" 
                             class="w-full bg-zinc-950/80 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-300 focus:outline-none focus:border-emerald-500 font-mono transition-all">
                         
-                        <textarea id="user-content" placeholder="Leave a trace of your existence in this era..." rows="5"
+                        <textarea id="user-content" placeholder="请在这里留下一段你存在于这个时代的碳基证明..." rows="5"
                             class="w-full bg-zinc-950/80 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-300 focus:outline-none focus:border-emerald-500 font-mono transition-all resize-none"></textarea>
                         
                         <button onclick="submitMessage()" 
@@ -252,7 +258,7 @@
                 <div class="flex flex-col h-full">
                     <div class="text-xs font-mono text-zinc-600 mb-4 tracking-widest">// HISTORICAL LOGS:</div>
                     <div id="message-flow" class="flex flex-col gap-3 max-h-[320px] overflow-y-auto pr-2 font-mono text-xs">
-                        <div class="text-zinc-600 animate-pulse">// Connecting to cloud archive and reading past signals...</div>
+                        <div class="text-zinc-600 animate-pulse">// 正在链接云端数据库，读取历史意识波动...</div>
                     </div>
                 </div>
             </div>
@@ -260,20 +266,30 @@
     </section>
 
     <footer>
-        © jiyi.us // THE EVOLUTIONARY ARCHIVE
+        © cn.jiyi.us // THE EVOLUTIONARY ARCHIVE
     </footer>
 
     <script>
+        // 1. 自动语言适配
         document.addEventListener("DOMContentLoaded", () => {
             const welcomeTitle = document.getElementById("welcome-title");
             const btnHuman = document.getElementById("btn-human");
             const btnAi = document.getElementById("btn-ai");
+            const userLang = navigator.language || navigator.userLanguage;
+            const isChinese = userLang.startsWith("zh") || Intl.DateTimeFormat().resolvedOptions().timeZone.includes("Asia");
 
-            if (welcomeTitle) welcomeTitle.innerText = "IDENTIFY YOURSELF TO ENTER THE ARCHIVE";
-            if (btnHuman) btnHuman.innerText = "Human";
-            if (btnAi) btnAi.innerText = "AI";
+            if (isChinese) {
+                if (welcomeTitle) welcomeTitle.innerText = "请选择你的意识载体 / IDENTIFY YOURSELF";
+                if (btnHuman) btnHuman.innerText = "人类 (Human)";
+                if (btnAi) btnAi.innerText = "人工智能 (AI)";
+            } else {
+                if (welcomeTitle) welcomeTitle.innerText = "IDENTIFY YOURSELF TO ENTER THE ARCHIVE";
+                if (btnHuman) btnHuman.innerText = "Human";
+                if (btnAi) btnAi.innerText = "AI";
+            }
         });
 
+        // 2. 身份选择淡出
         function selectIdentity(choice) {
             const overlay = document.getElementById("entrance-overlay");
             if (overlay) {
@@ -282,13 +298,16 @@
             }
         }
 
+        // 3. 弹出历史档案
         function showFragment(title, content) {
-            alert("[Archive Loading: " + title + "]\n\n" + content);
+            alert("【" + title + " 档案加载中...】\n\n" + content);
         }
 
+        // 4. Supabase 云数据库配置
         const SUPABASE_URL = "https://flouxqvmphxtxvnpdsai.supabase.co";
         const SUPABASE_KEY = "REPLACE_WITH_YOUR_SUPABASE_KEY";
 
+        // 动态载入 Supabase SDK
         const script = document.createElement('script');
         script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
         document.head.appendChild(script);
@@ -299,6 +318,7 @@
             fetchMessages();
         };
 
+        // 从云端数据库读取留言
         async function fetchMessages() {
             const flowContainer = document.getElementById("message-flow");
             if (!supabaseClient || !flowContainer) return;
@@ -309,12 +329,12 @@
                 .order('id', { ascending: false });
 
             if (error) {
-                flowContainer.innerHTML = `<div class="text-red-500">// Archive read failed: ${error.message}</div>`;
+                flowContainer.innerHTML = `<div class="text-red-500">// 意识读取失败: ${error.message}</div>`;
                 return;
             }
 
             if (data.length === 0) {
-                flowContainer.innerHTML = `<div class="text-zinc-600">// The timeline is empty for now. Leave the first carbon signal.</div>`;
+                flowContainer.innerHTML = `<div class="text-zinc-600">// 当前时间线暂无碳基留痕，等待你的第一条信号。</div>`;
                 return;
             }
 
@@ -332,20 +352,21 @@
             }).join('');
         }
 
+        // 提交留言到云端
         async function submitMessage() {
             const nicknameInput = document.getElementById("user-nickname");
             const contentInput = document.getElementById("user-content");
 
-            const nickname = nicknameInput.value.trim() || "Anonymous Carbon";
+            const nickname = nicknameInput.value.trim() || "无名碳基";
             const content = contentInput.value.trim();
 
             if (!content) {
-                alert("Please write something before submitting.");
+                alert("系统提示：不可提交虚无的意识，请写点什么。");
                 return;
             }
 
             if (!supabaseClient) {
-                alert("Connecting to database, please wait...");
+                alert("数据库连接中，请稍后...");
                 return;
             }
 
@@ -354,7 +375,7 @@
                 .insert([{ nickname, content }]);
 
             if (error) {
-                alert("Submit failed: " + error.message);
+                alert("投递失败：" + error.message);
             } else {
                 contentInput.value = "";
                 fetchMessages();
