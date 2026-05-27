@@ -15,7 +15,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createServerClient$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@supabase/ssr/dist/module/createServerClient.js [app-rsc] (ecmascript)");
 ;
 const supabaseUrl = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsb3V4cXZtcGh4dHh2bnBkc2FpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NDQ2ODksImV4cCI6MjA5NTIyMDY4OX0.WWuC4IO6xmOHfLIcGyGS1SZjt4ZocfgJSBsZVrYLQuA");
-const supabaseKey = ("TURBOPACK compile-time value", "sb_publishable_uHLOCjB8ZlxPdfx6g-s1Bw_G0-595l9");
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 const createClient = (cookieStore)=>{
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createServerClient$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createServerClient"])(supabaseUrl, supabaseKey, {
         cookies: {
