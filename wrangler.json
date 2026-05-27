@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "jiyi-en", // 👈 这里改成更规范的 jiyi-en
+  "name": "jiyi-web", // 👈 这里改成更规范的 jiyi-en
   "compatibility_date": "2026-05-25",
   "observability": {
     "enabled": true
