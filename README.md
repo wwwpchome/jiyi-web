@@ -1,66 +1,82 @@
-# jiyi-web Deployment Guide
+# jiyi-web
 
-This project now includes two site versions:
+An anonymous chat application built with Next.js and Supabase, implementing Scheme B where user nicknames are stored separately from messages.
 
-- `index.html`: English version intended for `jiyi.us`
-- `cn/index.html`: Chinese version intended for `cn.jiyi.us`
+## Project structure
 
-## What to deploy
+- `app/page.tsx` - Main chat UI component
+- `app/chatService.ts` - Core chat functions (syncAnonymousUser, sendMessage, fetchChatHistory)
+- `app/supabaseClient.ts` - Supabase client initialization
+- `.env.local.example` - Environment variables template
+- `FRONTEND_IMPLEMENTATION.md` - Detailed implementation guide
 
-### For `jiyi.us`
-Deploy the root `index.html` as the homepage for the international English site.
+## Key Features
 
-### For `cn.jiyi.us`
-Deploy `cn/index.html` as the homepage for the Chinese site.
+- **Anonymous chat** with localStorage-based session persistence
+- **Upsert operations** for nickname management
+- **Joined queries** using Supabase resource embedding
+- **Real-time message display** with user nicknames
+- **TypeScript** for type safety
 
-## Cloudflare Pages deployment
+## Build & run
 
-Use two separate Cloudflare Pages projects, one for each domain.
+```bash
+# Install dependencies
+npm install
 
-### Project configuration
+# Set up environment variables (copy from .env.local.example)
+cp .env.local.example .env.local
+# Edit .env.local with your Supabase credentials
 
-1. `jiyi.us` Pages project
-   - Build command: leave empty
-   - Build output directory: `/`
-   - Root `index.html` must be served as the homepage
+# Development
+npm run dev
 
-2. `cn.jiyi.us` Pages project
-   - Build command: leave empty
-   - Build output directory: `cn`
-   - Ensure `cn/index.html` is served as the homepage
+# Production build
+npm run build
+npm start
+```
 
-### Setup checklist
+## Supabase Configuration
 
-- [ ] Create the first Cloudflare Pages project and connect it to this repository.
-- [ ] Leave the build command blank.
-- [ ] Set the build output directory to `/` for `jiyi.us`.
-- [ ] Confirm `index.html` is the homepage for `jiyi.us`.
-- [ ] Add `jiyi.us` as the custom domain for the first Pages project.
-- [ ] Create the second Cloudflare Pages project for the same repository.
-- [ ] Leave the build command blank.
-- [ ] Set the build output directory to `cn` for `cn.jiyi.us`.
-- [ ] Confirm `cn/index.html` is the homepage for `cn.jiyi.us`.
-- [ ] Add `cn.jiyi.us` as the custom domain for the second Pages project.
-- [ ] Verify both domains inside Cloudflare Pages.
+1. Create a Supabase project at https://supabase.com
+2. Set up tables:
+   - `anonymous_users` (session_id, nickname, created_at, updated_at)
+   - `messages` (id, session_id, content, created_at)
+3. Copy your project URL and anon key to `.env.local`
 
-## Cloudflare DNS guidance
+See `FRONTEND_IMPLEMENTATION.md` for detailed setup instructions.
 
-If Cloudflare DNS manages both domains:
+## Architecture
 
-- Keep both Pages projects in the same Cloudflare account.
-- Add the custom domains to their respective Pages projects.
-- Cloudflare will automatically manage the required DNS records for Pages.
+### Scheme B: Separate Nickname Storage
 
-## Developer Notes
+```
+anonymous_users
+├── session_id (PK)
+└── nickname
 
-- Serve HTML with correct charset headers, such as `Content-Type: text/html; charset=UTF-8`.
-- Keep source files encoded in UTF-8.
-- Avoid writing Chinese or other non-ASCII characters in HTTP header field values.
-- Non-ISO-8859-1 characters in header values can cause `TypeError` or server-side rejection in some proxy/CDN setups.
-- If you see encoding errors, verify both the HTTP headers and the actual file encoding.
+messages
+├── id (PK)
+├── session_id (FK → anonymous_users)
+└── content
+```
 
-## Summary
+This separation:
+- ✅ Allows nickname updates without message history changes
+- ✅ Enables upsert operations for session management
+- ✅ Supports efficient nickname queries and filtering
+- ✅ Maintains referential integrity
 
-- Root `index.html` = English site for `jiyi.us`
-- `cn/index.html` = Chinese site for `cn.jiyi.us`
-- Cloudflare Pages: two separate projects, output directories `/` and `cn`
+## Core Functions
+
+### `syncAnonymousUser(nickname: string)`
+Upserts user identity to the database. Call before or when sending messages.
+
+### `sendMessage(content: string, nickname: string)`
+Sends a message after syncing user identity.
+
+### `fetchChatHistory()`
+Fetches all messages with joined nickname data using Supabase resource embedding.
+
+See `FRONTEND_IMPLEMENTATION.md` for complete API documentation.
+
