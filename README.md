@@ -44,6 +44,8 @@ npm start
    - `messages` (id, session_id, content, created_at)
 3. Copy your project URL and anon key to `.env.local`
 
+If you are deploying the root static `index.html` directly, copy `config.example.js` to `config.js` and fill in your Supabase credentials.
+
 See `FRONTEND_IMPLEMENTATION.md` for detailed setup instructions.
 
 ## Architecture

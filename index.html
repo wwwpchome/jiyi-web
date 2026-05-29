@@ -263,6 +263,7 @@
         © jiyi.us // THE EVOLUTIONARY ARCHIVE
     </footer>
 
+    <script src="config.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const welcomeTitle = document.getElementById("welcome-title");
@@ -286,8 +287,16 @@
             alert("[Archive Loading: " + title + "]\n\n" + content);
         }
 
-        const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+        const SUPABASE_URL = window.__env__?.SUPABASE_URL || 'https://your-project.supabase.co';
+        const SUPABASE_KEY = window.__env__?.SUPABASE_KEY || 'your-anon-key-here';
+
+        if (!SUPABASE_URL || !SUPABASE_KEY || SUPABASE_URL.includes('your-project.supabase.co') || SUPABASE_KEY.includes('your-anon-key-here')) {
+            const flowContainer = document.getElementById("message-flow");
+            if (flowContainer) {
+                flowContainer.innerHTML = `<div class="text-red-500">// Missing Supabase credentials. Please replace SUPABASE_URL and SUPABASE_KEY in index.html or load them via window.__env__.</div>`;
+            }
+            return;
+        }
 
         const script = document.createElement('script');
         script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
